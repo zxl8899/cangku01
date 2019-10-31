@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../../../../../mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mysteel.ysmarket.dao.YSMarketContentDao">
+
+	<insert id="saveContent" parameterType="YSMarketContent">
+		INSERT INTO YS_MRK_MARKET_CONTENT
+			(id, marketId, tableId, breedId, relationType, relationId, breed, material, spec, unit, lowPrice, highPrice, avgPrice, raise, code, marketTime)
+		VALUES
+			(#{id}, #{marketId}, #{tableId}, #{breedId}, #{relationType}, #{relationId}, #{breed}, #{material}, #{spec}, #{unit}, #{lowPrice}, #{highPrice}, #{avgPrice}, #{raise}, #{code}, #{marketTime})
+		<selectKey resultType="long" keyProperty="id">
+			SELECT last_insert_id() AS id FROM YS_MRK_MARKET_CONTENT LIMIT 1
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteContentById" parameterType="Long">
+		DELETE FROM YS_MRK_MARKET_CONTENT WHERE marketId = #{value}
+	</delete>
+	
+	<select id="queryBreed" parameterType="String" resultType="String">
+		select distinct breed from `YS_MRK_MARKET_CONTENT` where breedId like #{value}
+	</select>
+
+	<select id="queryMaterial" parameterType="String" resultType="String">
+		select distinct material from `YS_MRK_MARKET_CONTENT` where breedId like #{value}
+	</select>
+	
+	<select id="querySpec" parameterType="String" resultType="String">
+		select distinct spec from `YS_MRK_MARKET_CONTENT` where breedId like #{value}
+	</select>
+	
+	<select id="queryRelation" parameterType="String" resultType="map">
+		select distinct relationType, relationId from `YS_MRK_MARKET_CONTENT` where breedId like #{value}
+	</select>
+	
+	<select id="queryContent" parameterType="map" resultType="YSMarketContent">
+		SELECT * FROM YS_MRK_MARKET_CONTENT 
+			<where>
+				<if test="marketId != null">
+					and marketId = #{marketId} 
+				</if>
+				<if test="tableId != null">
+					and tableId = #{tableId} 
+				</if>
+				<if test="breedId != null">
+					and breedId like #{breedId} 
+				</if>
+				<if test="relationType != null">
+					and relationType = #{relationType} 
+				</if>
+				<if test="relationId != null">
+					and relationId = #{relationId} 
+				</if>
+				<if test="breed != null">
+					and breed like #{breed} 
+				</if>
+				<if test="material != null">
+					and material = #{material} 
+				</if>
+				<if test="spec != null">
+					and spec = #{spec} 
+				</if>
+				<if test="startTime != null">
+					and marketTime &gt; #{startTime} 
+				</if>
+				<if test="endTime != null">
+					and marketTime &lt; #{endTime} 
+				</if>
+			</where>
+			 ORDER BY marketTime desc, id desc 
+			 <if test="start != null">
+			 	limit #{start}, #{max}
+			 </if>
+	</select>
+	
+	<select id="countContent" parameterType="map" resultType="int">
+		SELECT count(*) FROM YS_MRK_MARKET_CONTENT  
+			<where>
+				<if test="marketId != null">
+					and marketId = #{marketId} 
+				</if>
+				<if test="tableId != null">
+					and tableId = #{tableId} 
+				</if>
+				<if test="breedId != null">
+					and breedId like #{breedId} 
+				</if>
+				<if test="relationType != null">
+					and relationType = #{relationType} 
+				</if>
+				<if test="relationId != null">
+					and relationId = #{relationId} 
+				</if>
+				<if test="breed != null">
+					and breed like #{breed} 
+				</if>
+				<if test="material != null">
+					and material = #{material} 
+				</if>
+				<if test="spec != null">
+					and spec = #{spec} 
+				</if>
+				<if test="startTime != null">
+					and marketTime &gt; #{startTime} 
+				</if>
+				<if test="endTime != null">
+					and marketTime &lt; #{endTime} 
+				</if>
+			</where>
+	</select>
+	
+	<select id="queryAvg" parameterType="map" resultType="map">
+		SELECT avg(lowPrice) lowPrice,avg(highPrice) highPrice,avg(avgPrice) avgPrice,min(marketTime) startTime, max(marketTime) endTime FROM YS_MRK_MARKET_CONTENT  
+			<where>
+				<if test="marketId != null">
+					and marketId = #{marketId} 
+				</if>
+				<if test="tableId != null">
+					and tableId = #{tableId} 
+				</if>
+				<if test="breedId != null">
+					and breedId like #{breedId} 
+				</if>
+				<if test="relationType != null">
+					and relationType = #{relationType} 
+				</if>
+				<if test="relationId != null">
+					and relationId = #{relationId} 
+				</if>
+				<if test="breed != null">
+					and breed = #{breed} 
+				</if>
+				<if test="material != null">
+					and material = #{material} 
+				</if>
+				<if test="spec != null">
+					and spec = #{spec} 
+				</if>
+				<if test="startTime != null">
+					and marketTime &gt; #{startTime} 
+				</if>
+				<if test="endTime != null">
+					and marketTime &lt; #{endTime} 
+				</if>
+			</where>
+	</select>
+	
+</mapper>

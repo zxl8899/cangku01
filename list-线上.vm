@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	#if($!{returnMap.breedName} == "电解铜")
+	<title>我的有色金属网_现货/期货有色金属价格行情门户</title>
+	<meta name="description" content="我的有色金属网是中国有色金属行业最全面的价格行情网站，发布每日铜、铝、锌、铅、镍、铅、锡、废旧金属等价格行情和市场分析。同时汇聚长江有色金属价格，上海有色金属价格、有色金属交易等信息。查有色金属信息，就选我的有色金属网" />
+	<meta name="keywords" content="有色金属, 有色金属价格, 有色金属价格行情, 有色金属现货,上海有色金属,铜价格,铝价格" />
+	#else
+	<title>$!{returnMap.relationName}$!{returnMap.material}$!{returnMap.spec}$!{returnMap.breedName}价格_$!{returnMap.breed1}历史价格查询_我的有色金属网</title>
+	<meta name="description" content="$!{returnMap.relationName}$!{returnMap.material}$!{returnMap.spec}$!{returnMap.breedName}价格,$!{returnMap.breed1}价格,有色金属价格" />
+	<meta name="keywords" content="我的有色金属历史价格频道，提供$!{returnMap.breed1}历史价格，您可以查询$!{returnMap.relationName}$!{returnMap.material}$!{returnMap.spec}$!{returnMap.breedName}价格。有色金属$!{returnMap.breed1}历史现货价格行情就在我的有色网。" />
+	#end
+	<link rel="shortcut icon" type="image/x-icon" href="//a.mysteelcdn.com/ys/6.0/index/favicon.ico?v=01" />
+    <script type="text/javascript" src="//a.mysteelcdn.com/libs/html5shiv.min.js"></script>
+    <script type="text/javascript" src="//a.mysteelcdn.com/news/js/updataIE.js"></script>
+    <link href="//www.mymetal.net/ysmarket/skin/css/shouye.css" rel="stylesheet" type="text/css">
+	<link href="/ysmarket/skin/js/calendar/style.css" rel="stylesheet" type="text/css" />
+    <link href="/ysmarket/skin/css/add.css?v=201711011657" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/ysmarket/skin/js/mootools.js"></script>
+    <script src="//a.mysteelcdn.com/ys/6.0/index/focu.js" type="text/javascript"></script>
+    <script src="//a.mysteelcdn.com/ys/6.0/index/common.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/ysmarket/skin/js/calendar/calendar.js"></script>
+	<script type="text/javascript" charset="utf-8" src="//a.mysteelcdn.com/libs/jquery.min.js"></script>
+	<script> var jq183 = jQuery.noConflict(true); </script>
+
+    <script>
+        jq183(function($){
+            var fn_url = window.location.search;
+            var getQueryString = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = fn_url.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            var url_breedId = getQueryString("breedId");
+
+            $('.sidebar a').each(function(){
+                var str = $(this).attr('href');
+                fn_url = str.substring(str.lastIndexOf("?"));
+                var page_breedId = getQueryString("breedId");
+                if ( page_breedId == url_breedId ) {
+                    $(this).addClass('active');
+                    $(this).parent('li').parent('ul').slideToggle(300);
+                    $(this).parent('li').parent('ul').siblings('strong').children('i').addClass('up')
+                } else if( url_breedId == null ){
+                    $('.fn-left-col li:eq(0) ul').show();
+                    $('.fn-left-col li:eq(0) strong .ar').addClass('up');
+                }
+            })
+
+            // 左侧菜单效果
+            $('.fn-left-col ul li strong .ar').click(function () {
+                $(this).parent().siblings('ul').slideToggle(300);
+                $(this).toggleClass('up')
+                $(this).parent().parent().siblings().children('ul').stop().slideUp(300)
+                $(this).parent().parent().siblings().children('strong').children('.ar').removeClass('up')
+            })
+            // 隔行变色
+            $('.optionDefault:odd').css('background','#fafafa');
+            $('.dataTab tr:even').css('background','#fafafa');
+        });
+        function _cancelCon(obj)
+        {
+        	if ($(obj))
+        	{
+        		$(obj).destroy();
+        	}
+
+        	submitInfo();
+        }
+        function submitInfo()
+        {
+        	var f = $('listForm');
+
+        	f.action= "list.ms";
+
+        	f.submit();
+        }
+
+        function showMore(obj)
+        {
+        	if (obj.get("html") == "更多")
+        	{
+        		obj.getParent().set("class", "opListBody opMorelist");
+
+        		obj.set("html", "隐藏");
+
+        	}
+        	else
+        	{
+        		obj.getParent().set("class", "opListBody");//
+
+        		obj.set("html", "更多");
+        	}
+        }
+        function exportData()
+        {
+        	var f = $('queryForm');
+        	f.action = 'export.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!{returnMap.specs}';
+        	f.submit();
+        }
+    </script>
+</head>
+
+<body class="fn-his">
+    <header id="header">
+        <link rel="stylesheet" href="//a.mysteelcdn.com/common/3.0/css/mysteel_topbar.css?v=20181022">
+        <link rel="stylesheet" href="//a.mysteelcdn.com/common/3.0/css/add_youse_headnav.css?v=201801261712">
+        <div id="navWid1190">
+          <script type="text/javascript" charset="gbk" src="//a.mysteelcdn.com/common/3.0/js/mymetal_head_topbar.js?v=201810221358"></script>
+        </div>
+        <div class="siteNav" style="border-top:1px solid #d3d3d3;">
+            <a href="//news.mysteel.com/" target="_blank">综合资讯</a>
+            <a href="//www.mysteel.com/" target="_blank">钢铁</a>
+            <a href="//www.mymetal.net/" target="_blank">有色</a>
+            <a href="//coal.mysteel.com/" target="_blank">煤炭</a>
+            <a href="//coalchem.oilchem.net/" target="_blank">煤化工</a>
+            <a href="//oil.oilchem.net/oil/" target="_blank">石油</a>
+            <a href="//www.myagric.com/" target="_blank">农产品</a>
+            <a href="//data.mysteel.com/" target="_blank">
+                <font class="red">钢联数据</font>
+            </a>
+            <a href="http://www.100njz.com/" target="_blank">
+                <font class="red">工程</font>
+            </a>
+            <a href="http://www.100njz.com/bid/" target="_blank">招标</a>
+            <a href="http://www.banksteel.com/" target="_blank">
+                <font class="red">钢银电商</font>
+            </a>
+            <a href="//e.mysteel.com/" target="_blank">搜搜钢</a>
+            <a href="http://www.56steel.com/" target="_blank">
+                <font class="red">物流</font>
+            </a>
+            <a href="//world.mysteel.com/" target="_blank">国际</a>
+            <a href="//haiyun.mysteel.com/" target="_blank">海运</a>
+            <a href="//news.mysteel.com/qh/" target="_blank">期货</a>
+            <a href="//index.mysteel.com/xpic/desktop.html" target="_blank">指数</a>
+            <a href="//tech.mysteel.com/" target="_blank">技术</a>
+            <a href="//factory.mysteel.com/" target="_blank">钢厂</a>
+            <a href="//huizhan.mysteel.com/" target="_blank">会展</a>
+            <a href="//job.mysteel.com/" target="_blank">人才</a>
+            <a href="//mri.mysteel.com/" target="_blank" title="研究咨询">研究</a>
+            <a href="//www.mysteel.com/zhibo/" target="_blank" class="noM">
+                <font class="red">快讯</font>
+            </a>
+        </div>
+        <dl class="top-wrap">
+            <dt class="logo">
+                <a href="//www.mymetal.net/" target="_blank" title="我的有色"></a>
+            </dt>
+            <dd class="menuType">
+                <ul class="menu-breed">
+                    <!--<li id="ad-header1-wrap"><div id="ad-header1"></div></li>-->
+                    <li class="noP-left">
+                        <p>
+                            <a href="//www.mymetal.net/market/p-259-----0201-0--------1.html" target="_blank" class="red first">铜</a>
+
+                            <a href="//www.mymetal.net/market/p-259-----020101-0--------1.html" target="_blank">电解铜</a>
+                            <a href="//www.mymetal.net/market/p-261-----020104-0--------1.html" target="_blank">铜精矿</a>
+                            <a href="//www.mymetal.net/market/p-457-----020105-0-01-------1.html" target="_blank">废铜</a>
+                            <a href="//www.mymetal.net/market/p-462-----020106-0--------1.html" target="_blank">铜杆线</a>
+                            <a href="//www.mymetal.net/market/p-457-----020107-0--------1.html" target="_blank">铜管</a>
+                            <a href="//www.mymetal.net/market/p-463-----020108-0--------1.html" target="_blank">铜板带</a>
+                            <a href="//www.mymetal.net/market/p-458-----020109-0--------1.html" target="_blank">铜棒</a>
+                            <a href="//www.mymetal.net/market/p-259-----020110-0-01-------1.html" target="_blank">铜排</a>
+                            <a href="//www.mymetal.net/market/p-259-----020103-0-01-------1.html" target="_blank">铜合金</a>
+                        </p>
+                        <p>
+                            <a href="//www.mymetal.net/market/p-292-----0202-0--------1.html" target="_blank" class="red first">铝</a>
+                            <a href="//list1.mysteel.com/market/p-283-----020204-0--------1.html" target="_blank">电解铝</a>
+                            <a href="//www.mymetal.net/market/p-289-----020202-0--------1.html" target="_blank">氧化铝</a>
+                            <a href="//www.mymetal.net/market/p-292-----020201-0--------1.html" target="_blank">铝土矿</a>
+                            <a href="//www.mymetal.net/market/p-284-----020210-0--------1.html" target="_blank">铝棒</a>
+                            <a href="//www.mymetal.net/market/p-285-----020203-0--------1.html" target="_blank">铝板</a>
+                            <a href="//www.mymetal.net/market/p-286------0--------1.html" target="_blank">铝合金</a>
+                            <a href="//www.mymetal.net/market/p-284-----020207-0-01-------1.html" target="_blank">预焙阳极</a>
+                            <a href="//www.mymetal.net/market/p-284-----020211-0-01-------1.html" target="_blank">铝杆线</a>
+                            <a href="//www.mymetal.net/market/p-284-----020209-0-01-------1.html" target="_blank">铝型材</a>
+                        </p>
+                    </li>
+                    <li class="last">
+                        <p>
+                            <a href="//www.mymetal.net/market/p-270-----0203-0--------1.html" target="_blank" class="red first">铅</a>
+                            <a href="//www.mymetal.net/market/p-269-----020302-0--------1.html" target="_blank">铅矿</a>
+                            <a href="//www.mymetal.net/market/p-270-----020301-0--------1.html" target="_blank">铅锭</a>
+                            <a href="//www.mymetal.net/market/p-292-----020307-0-01-------1.html" target="_blank">废电瓶</a>
+                            <a href="//www.mymetal.net/market/p-292-----020306-0-01-------1.html" target="_blank">铅锑合金</a>
+                            <a href="//www.mymetal.net/market/p-292-----020304-0-01-------1.html" target="_blank">还原铅</a>
+                        </p>
+                        <p>
+                            <a href="//www.mymetal.net/market/p-277-----0204-0--------1.html" target="_blank" class="red first">锌</a>
+                            <a href="//www.mymetal.net/market/p-278-----020403-0--------1.html" target="_blank">锌精矿</a>
+                            <a href="//www.mymetal.net/market/p-277-----020401-0--------1.html" target="_blank">锌锭</a>
+                            <a href="//duxin.mysteel.com/" target="_blank">镀锌</a>
+                            <a href="//www.mymetal.net/market/p-292-----020402-0-01-------1.html" target="_blank">锌合金</a>
+                            <a href="//www.mymetal.net/market/p-292-----020404-0-01-------1.html" target="_blank">氧化锌</a>
+                            <a href="//www.mymetal.net/market/p-292-----020406-0-01-------1.html" target="_blank">锌粉</a>
+                        </p>
+                    </li>
+
+                </ul>
+
+            </dd>
+        </dl>
+    </header>
+    <!-- 页面主菜单 -->
+    <nav class="navBox" breed=$breedParent>
+        <a href="//www.mymetal.net/" target="_blank" breed="">首页</a> <a href="//www.mymetal.net/copper/" target="_blank" breed="0201">铜</a> <a href="//www.mymetal.net/aluminum/" target="_blank" breed="0202">铝</a> <a href="//www.mymetal.net/lead/" target="_blank" breed="0203">铅</a> <a href="//www.mymetal.net/zinc/" target="_blank" breed="0204">锌</a> <a href="//www.mymetal.net/nickel-cobalt/" target="_blank" breed="0205">镍</a>
+        <!-- <a href="//www.mymetal.net/rare-earth/" target="_blank" breed="0220">稀土</a> -->
+        <!-- <a href="//www.mymetal.net/scraps/" target="_blank" breed="0213">再生</a> -->
+        <a href="https://xitu.mymetal.net/" target="_blank" breed="0220">稀土</a>
+        <a href="https://xi.mymetal.net/" target="_blank" breed="0207">锡</a>
+        <a href="//www.mymetal.net/market/p-975-----0201-0--------1.html" target="_blank" class="today-nav" breed="">今日价格<i class="hotIcon"></i></a> <a href="//www.mymetal.net/ysmarket/index.ms" target="_blank" class="cur">历史价格</a>
+        <script language="javascript">
+            function change(getId, getName, showDiv, id, name, searchLink) {
+                var fn_searchLink = 'http://search.mysteel.com/' + searchLink + '/search.ms';
+                document.getElementById("eform").action = fn_searchLink;
+                document.getElementById(getId).value = id;
+                document.getElementById(getName).innerHTML = name;
+                document.getElementById(showDiv).style.display = 'none';
+
+            }
+        </script>
+        <div class="search">
+            <form id="eform" name="eform" target="_blank" method="post" action="http://search.mysteel.com/article/search.ms" onsubmit="return checkKwInput()">
+                <span id="searResult" onMouseOver="document.getElementById('searSelPop').style.display='block'" onMouseOut="document.getElementById('searSelPop').style.display='none'" class="searchSelect">文章</span>
+                <input name="kw" id="kw" type="text" size="27" value="请输入关键字搜索" class="inputStyle" onfocus="if(value =='请输入关键字搜索'){value =''; document.getElementById('kw').style.color='#0d3c82'}" onblur="if(value ==''){value ='请输入关键字搜索'; document.getElementById('kw').style.color='#ABB7C4'}">
+                <input type="submit" class="searchBtn" value="搜索">
+                <ul onMouseOver="document.getElementById('searSelPop').style.display='block'" onMouseOut="document.getElementById('searSelPop').style.display='none'" id="searSelPop" style="display:none;" class="searchSelectPop">
+                    <li onClick="return change('ct','searResult','searSelPop','','文章','article')">文章</li>
+                    <li onClick="return change('ct','searResult','searSelPop','','行情','market')">行情</li>
+                    <li onClick="return change('ct','searResult','searSelPop','','汇总','price')">汇总</li>
+                </ul>
+                <input type="hidden" value="" name="ct" id="ct">
+            </form>
+            <script>
+                function checkKwInput() {
+                    var kw = document.getElementById('kw');
+                    if (kw.value == '请输入关键字搜索') {
+                        kw.value = '';
+                    }
+                    return true;
+                }
+            </script>
+        </div>
+    </nav>
+    <!-- 热门标签 -->
+    <dl class="subNav">
+        <dt style="width: 100%;">
+            <span class="red">热门标签：</span>
+            <ul>
+                <li class="blue">产品<i class="hotIcon"></i></li>
+                <li>
+                    <a href="http://www.mysteel.com/fwbj.html?location1=ysjs&location=tong" target="_blank">数据</a>
+                    <a href="http://huizhan.mysteel.com/huodong" target="_blank">调研</a>
+                    <a href="http://huizhan.mysteel.com/baodao" target="_blank">报告</a>
+                    <a href="http://www.mysteel.com/fwbj.html?location1=bzgy" target="_blank" class="noBor">会员</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="blue">行情</li>
+                <li>
+                    <a href="//www.mymetal.net/market/p-261-----0201-0-01-------1.html" target="_blank">铜</a>
+                    <a href="//www.mymetal.net/market/p-261-----0202-0-01-------1.html" target="_blank">铝</a>
+                    <a href="//www.mymetal.net/market/p-261-----0203-0-01-------1.html" target="_blank">铅</a>
+                    <a href="//www.mymetal.net/market/p-261-----0204-0-01-------1.html" target="_blank" class="noBor">锌</a>
+                    <!--<a href="//www.mymetal.net/gold-silver/index.html" target="_blank">贵金属</a>-->
+                </li>
+            </ul>
+            <ul>
+                <li class="blue">库存</li>
+                <li>
+                    <a href="//www.mymetal.net/article/p-1957----0201---------1.html" target="_blank">现货</a>
+                    <a href="//www.mymetal.net/article/p-1961-------------1.html" class="noBor" target="_blank">港口</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="blue">期货 </li>
+                <li>
+                    <a href="//www.mymetal.net/article/p-1984-------------1.html" target="_blank">期货行情</a>
+                    <a href="//www.mymetal.net/article/p-2992----0201-0--------1.html" target="_blank">期货库存 </a>
+                    <a href="//www.mymetal.net/article/p-2575-------------1.html" class="noBor" target="_blank">机构观点 </a>
+                </li>
+            </ul>
+        </dt>
+    </dl>
+    <div class="warp">
+        <div class="fn-left-col">
+            <div class="sidebar">
+                <h2>全部分类</h2>
+                <ul>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "电解铜")class="active" #end  href="/ysmarket/list.ms?breedId=0201">铜</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "电解铜")class="active" #end href="/ysmarket/list.ms?breedId=020101">电解铜</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜合金")class="active" #end href="/ysmarket/list.ms?breedId=020103">铜合金</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜精矿")class="active" #end href="/ysmarket/list.ms?breedId=020104">铜精矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜杆")class="active" #end href="/ysmarket/list.ms?breedId=020106">铜杆</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜管")class="active" #end href="/ysmarket/list.ms?breedId=020107">铜管</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜板带")class="active" #end href="/ysmarket/list.ms?breedId=020108">铜板带</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜棒")class="active" #end href="/ysmarket/list.ms?breedId=020109">铜棒</a></li>
+                            <li><a #if($!{returnMap.breedName} == "废铜")class="active" #end href="/ysmarket/list.ms?breedId=020105">废铜</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铜排")class="active" #end href="/ysmarket/list.ms?breedId=020110">铜排</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "铝")class="active" #end  href="/ysmarket/list.ms?breedId=0202">铝</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "铝土矿")class="active" #end href="/ysmarket/list.ms?breedId=020201">铝土矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "氧化铝")class="active" #end href="/ysmarket/list.ms?breedId=020202">氧化铝</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铝板")class="active" #end href="/ysmarket/list.ms?breedId=020203">铝板</a></li>
+                            <li><a #if($!{returnMap.breedName} == "电解铝")class="active" #end href="/ysmarket/list.ms?breedId=020204">电解铝</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铝合金锭")class="active" #end href="/ysmarket/list.ms?breedId=020205">铝合金锭</a></li>
+                            <li><a #if($!{returnMap.breedName} == "预焙阳极")class="active" #end href="/ysmarket/list.ms?breedId=020207">预焙阳极</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铝型材")class="active" #end href="/ysmarket/list.ms?breedId=020209">铝型材</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铝棒")class="active" #end href="/ysmarket/list.ms?breedId=020210">铝棒</a></li>
+                            <li><a #if($!{returnMap.breedName} == "废铝")class="active" #end href="/ysmarket/list.ms?breedId=020206">废铝</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铝杆线")class="active" #end href="/ysmarket/list.ms?breedId=020211">铝杆线</a></li>
+                            <li><a #if($!{returnMap.breedName} == "氟化铝")class="active" #end href="/ysmarket/list.ms?breedId=020213">氟化铝</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "铅")class="active" #end href="/ysmarket/list.ms?breedId=0203">铅</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "铅锭")class="active" #end href="/ysmarket/list.ms?breedId=020301">铅锭</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铅精矿")class="active" #end href="/ysmarket/list.ms?breedId=020302">铅精矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "还原铅")class="active" #end href="/ysmarket/list.ms?breedId=020304">还原铅</a></li>
+                            <li><a #if($!{returnMap.breedName} == "铅锑合金")class="active" #end href="/ysmarket/list.ms?breedId=020306">铅锑合金</a></li>
+                            <li><a #if($!{returnMap.breedName} == "废电瓶")class="active" #end href="/ysmarket/list.ms?breedId=020307">废电瓶</a></li>
+                            <li><a #if($!{returnMap.breedName} == "2#铅")class="active" #end href="/ysmarket/list.ms?breedId=020308">2#铅</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "锌")class="active" #end href="/ysmarket/list.ms?breedId=0204">锌</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "锌锭")class="active" #end href="/ysmarket/list.ms?breedId=020401">锌锭</a></li>
+                            <li><a #if($!{returnMap.breedName} == "锌合金")class="active" #end href="/ysmarket/list.ms?breedId=020402">锌合金</a></li>
+                            <li><a #if($!{returnMap.breedName} == "锌精矿")class="active" #end href="/ysmarket/list.ms?breedId=020403">锌精矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "氧化锌")class="active" #end href="/ysmarket/list.ms?breedId=020404">氧化锌</a></li>
+                            <li><a #if($!{returnMap.breedName} == "锌粉")class="active" #end href="/ysmarket/list.ms?breedId=020406">锌粉</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "钴")class="active" #end href="/ysmarket/list.ms?breedId=0205">钴</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "电解钴")class="active" #end href="/ysmarket/list.ms?breedId=020505">电解钴</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "镁")class="active" #end href="/ysmarket/list.ms?breedId=0208">镁</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "镁锭")class="active" #end href="/ysmarket/list.ms?breedId=020801">镁锭</a></li>
+                            <li><a #if($!{returnMap.breedName} == "镁粉")class="active" #end href="/ysmarket/list.ms?breedId=020803">镁粉</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "金")class="active" #end href="/ysmarket/list.ms?breedId=0209">金</a></strong>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "银")class="active" #end href="/ysmarket/list.ms?breedId=0224">银</a></strong>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "硅")class="active" #end href="/ysmarket/list.ms?breedId=0212">硅</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "金属硅")class="active" #end href="/ysmarket/list.ms?breedId=021201">金属硅</a></li>
+                            <li><a #if($!{returnMap.breedName} == "硅铁")class="active" #end href="/ysmarket/list.ms?breedId=021202">硅铁 </a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "钛")class="active" #end href="/ysmarket/list.ms?breedId=0215">钛</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "钛管")class="active" #end href="/ysmarket/list.ms?breedId=021501">钛管</a></li>
+                            <li><a #if($!{returnMap.breedName} == "钛板")class="active" #end href="/ysmarket/list.ms?breedId=021502">钛板</a></li>
+                            <li><a #if($!{returnMap.breedName} == "钛棒")class="active" #end href="/ysmarket/list.ms?breedId=021503">钛棒</a></li>
+                            <li><a #if($!{returnMap.breedName} == "海绵钛")class="active" #end href="/ysmarket/list.ms?breedId=021504">海绵钛</a></li>
+                            <li><a #if($!{returnMap.breedName} == "钛精矿")class="active" #end href="/ysmarket/list.ms?breedId=021505">钛精矿</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "稀土")class="active" #end href="/ysmarket/list.ms?breedId=0220">稀土</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "稀土混合金属")class="active" #end href="/ysmarket/list.ms?breedId=022015">稀土混合金属</a></li>
+                            <li><a #if($!{returnMap.breedName} == "稀土永磁")class="active" #end href="/ysmarket/list.ms?breedId=022017">稀土永磁</a></li>
+                            <li><a #if($!{returnMap.breedName} == "稀土金属")class="active" #end href="/ysmarket/list.ms?breedId=022018">稀土金属</a></li>
+                            <li><a #if($!{returnMap.breedName} == "稀土矿")class="active" #end href="/ysmarket/list.ms?breedId=022019">稀土矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "稀土氧化物")class="active" #end href="/ysmarket/list.ms?breedId=022020">稀土氧化物</a></li>
+                        </ul>
+                    </li>
+		            <li>
+                        <strong><a #if($!{returnMap.breedName} == "锡")class="active" #end href="/ysmarket/list.ms?breedId=0207">锡</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "锡精矿")class="active" #end href="/ysmarket/list.ms?breedId=020705">锡精矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "锡锭")class="active" #end href="/ysmarket/list.ms?breedId=020701">锡锭</a></li>
+                            <li><a #if($!{returnMap.breedName} == "锡相关")class="active" #end href="/ysmarket/list.ms?breedId=020706">锡相关</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "镍")class="active" #end href="/ysmarket/list.ms?breedId=0222">镍</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "镍矿")class="active" #end href="/ysmarket/list.ms?breedId=022201">镍矿</a></li>
+                            <li><a  #if($!{returnMap.breedName} == "镍铁")class="active" #end href="/ysmarket/list.ms?breedId=022202">镍铁</a></li>
+                            <li><a #if($!{returnMap.breedName} == "电解镍")class="active" #end href="/ysmarket/list.ms?breedId=020501">电解镍</a></li>
+                            <li><a #if($!{returnMap.breedName} == "镍盐")class="active" #end href="/ysmarket/list.ms?breedId=022204">镍盐</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong><a #if($!{returnMap.breedName} == "铬")class="active" #end href="/ysmarket/list.ms?breedId=0223">铬</a><i class="ar"></i></strong>
+                        <ul>
+                            <li><a #if($!{returnMap.breedName} == "铬矿")class="active" #end href="/ysmarket/list.ms?breedId=022301">铬矿</a></li>
+                            <li><a #if($!{returnMap.breedName} == "高碳铬铁")class="active" #end href="/ysmarket/list.ms?breedId=02230201">高碳铬铁</a></li>
+                            <li><a #if($!{returnMap.breedName} == "低微碳铬铁")class="active" #end href="/ysmarket/list.ms?breedId=02230202">低微碳铬铁</a></li>
+                            <li><a #if($!{returnMap.breedName} == "中碳铬铁")class="active" #end href="/ysmarket/list.ms?breedId=02230203">中碳铬铁</a></li>
+                            <li><a #if($!{returnMap.breedName} == "氮化铬")class="active" #end href="/ysmarket/list.ms?breedId=02230204">氮化铬</a></li>
+                            <li><a #if($!{returnMap.breedName} == "金属铬")class="active" #end href="/ysmarket/list.ms?breedId=022303">金属铬</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="leftCol">
+            <div class="sideBar">
+                <div class="title noTop"><span class="ticon">主流品种</span> </div>
+                <div class="rList">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0201" class="t">铜</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020101">电解铜</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020103">铜合金</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020104">铜精矿</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020106">铜杆</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020107">铜管</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020108">铜板带</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020109">铜棒</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020110">铜排</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0202" class="t">铝</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020201">铝土矿</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020202">氧化铝</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020203">铝板</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020204">电解铝</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020205">铝合金锭</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020207">预焙阳极</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020209">铝型材</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020210">铝棒</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0203" class="t">铅</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020301">铅锭</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020302">铅精矿</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0204" class="t">锌</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020401">锌锭</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020402">锌合金</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020403">锌精矿</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020404">氧化锌</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020406">锌粉</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0205" class="t">镍钴</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020501">电解镍</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020505">电解钴 </a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0207" class="t">锡锑</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020701">锡锭</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020703">锡材</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020704">锑锭</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0208" class="t">镁</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020801">镁锭</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=020803">镁粉</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0209" class="t">金银</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0209">金</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0224">银</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0212" class="t">硅</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=021201">金属硅</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=021202">硅铁 </a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0213" class="t">再生</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=021301">废铜</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=021302">废铝</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221" class="t">现货市场</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221&amp;relationType=0&amp;relationId=0102010805">南海市场</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221&amp;relationType=0&amp;relationId=01010102">华通市场</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221&amp;relationType=0&amp;relationId=01010101">长江市场 </a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221&amp;relationType=0&amp;relationId=0102010804">南储市场</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0221&amp;relationType=0&amp;relationId=01040101">中铝 </a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList bg">
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=0220" class="t">稀土</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=022015">稀土混合金属</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=022018">稀土金属</a>
+                    <a href="//www.mymetal.net/ysmarket/list.ms?breedId=022020">稀土氧化物 </a>
+                    <div class="clear"></div>
+                </div>
+                <div class="rList noBor">
+                </div>
+            </div>
+        </div> -->
+       <div class="main">
+			<div class="mianLSelecthead" >
+				<div class="mLcurSelectTitle">你已经选择：</div>
+				<form id="listForm" name="listForm" method="post">
+					<input name = "breedId" type = "hidden" value = "$!{returnMap.breedId}" />
+					<input name = "startTime" type = "hidden" value = "$!{returnMap.startTime}" />
+					<input name = "endTime" type = "hidden" value = "$!{returnMap.endTime}" />
+    				#if($!{returnMap.breedId} != "")
+    			    <div class="mLcurSelect">
+    					<div class="left">品种：</div>
+    					<div class="left">$!{returnMap.breedName}</div>
+    				</div>
+    				#end
+
+    				#if($!{returnMap.breed1} && $!{returnMap.breed1} != "")
+    				<div id="breedSelect" class="mLcurSelect">
+    					<div class="left">品名：</div>
+    					<div class="left">$!{returnMap.breed1}</div>
+    					<input name="breed" type="hidden" value = "$!{returnMap.breed1s}" />
+    					<span id="breedSelectspan" onclick="_cancelCon('breedSelect')"></span>
+    				</div>
+    				#end
+
+    				#if($!{returnMap.material} && $!{returnMap.material} != "")
+    				<div id="materialSelect" class="mLcurSelect">
+    					<div class="left">材质：</div>
+    					<div class="left">$!{returnMap.material}</div>
+    					<input name = "material" type = "hidden" value = "$!{returnMap.materials}" />
+    					<span id="materialSelectspan" onclick="_cancelCon('materialSelect')"></span>
+    				</div>
+					#end
+
+    				#if($!{returnMap.spec} && $!{returnMap.spec} != "")
+    				<div id="specSelect" class="mLcurSelect">
+    					<div class="left">规格：</div>
+    					<div class="left">$!{returnMap.spec}</div>
+    					<input name = "spec" type = "hidden" value = "$!{returnMap.specs}" />
+    					<span id="specSelectspan" onclick="_cancelCon('specSelect')"></span>
+    				</div>
+					#end
+
+    				#if($!{returnMap.relationId} && $!{returnMap.relationId} != "")
+    				<div id="relationSelect" class="mLcurSelect">
+    					<div class="left">
+    						#if($!{returnMap.relationType} == 0)城市：
+    						#elseif($!{returnMap.relationType} == 1)港口：
+    						#elseif($!{returnMap.relationType} == 2)钢厂：
+    						#elseif($!{returnMap.relationType} == 3)钢市：
+    						#end
+    					</div>
+    					<div class="left">$!{returnMap.relationName}</div>
+    					<input name = "relationId" type = "hidden" value = "$!{returnMap.relationId}" />
+                        <span id="relationSelectspan" onclick="_cancelCon('relationSelect')"></span>
+    				</div>
+    				#end
+				</form>
+				<a class="mLcurSelectClear" href="list.ms?breedId=$!{returnMap.breedId}">清除全部</a>
+				<div class="clear"></div>
+			</div>
+			<div class="shopBox">
+				#if($returnMap.headParams.breeds)
+				<div class="optionDefault">
+					<div class="opTitle">品名：</div>
+					<div class="opListBody ">
+						<div class="allselect"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}" >不限</a> </div>
+						<ul class="opListItems">
+							#foreach($!breed1 in $!returnMap.headParams.breeds)
+								#if($velocityCount < 15)
+									<li><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!velocityTool.encoding($!{breed1})&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!breed1</span> </a> </li>
+								#else
+									<li class="more"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!velocityTool.encoding($!{breed1})&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!breed1</span> </a> </li>
+								#end
+							#end
+							</ul>
+							<a onclick="showMore($(this))" class="opShowmorebtn" href="javascript:;" id="catagoryA">更多</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				#end
+				#if($returnMap.headParams.materials)
+				<div class="optionDefault">
+					<div class="opTitle">材质/牌号：</div>
+					<div class="opListBody ">
+						<div class="allselect"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}" >不限</a> </div>
+						<ul class="opListItems">
+							#foreach($!material in $!returnMap.headParams.materials)
+								#if ($!material != '-')
+    								#if($velocityCount < 15)
+    									<li><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!velocityTool.encoding($!{material})&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!material</span> </a> </li>
+    								#else
+    									<li class="more"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!velocityTool.encoding($!{material})&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!material</span> </a> </li>
+    								#end
+								#end
+							#end
+							</ul>
+							<a onclick="showMore($(this))" class="opShowmorebtn" href="javascript:;" id="catagoryA">更多</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				#end
+				#if($returnMap.headParams.specs)
+				<div class="optionDefault">
+					<div class="opTitle"> 规格：</div>
+					<div class="opListBody ">
+						<div class="allselect"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}" >不限</a> </div>
+						<ul class="opListItems">
+							#foreach($!spec in $!returnMap.headParams.specs)
+								#if($velocityCount < 9)
+									<li><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!velocityTool.encoding($!{spec})&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!spec</span> </a> </li>
+								#else
+									<li class="more"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!velocityTool.encoding($!{spec})&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!spec</span> </a> </li>
+								#end
+							#end
+						</ul>
+							<a onclick="showMore($(this))" class="opShowmorebtn" href="javascript:;" id="catagoryA">更多</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				#end
+				#if($returnMap.headParams.relations)
+				<div class="optionDefault">
+					<div class="opTitle">地区/港口：</div>
+					<div class="opListBody ">
+						<div class="allselect"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=&relationId=&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}" >不限</a> </div>
+						<ul class="opListItems">
+							#foreach($!relation in $returnMap.headParams.relations)
+								#if($velocityCount < 15)
+									<li><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{relation.relationType}&relationId=$!{relation.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!relation.name</span> </a> </li>
+								#else
+									<li class="more"><a href="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{relation.relationType}&relationId=$!{relation.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!{returnMap.specs}&startTime=$!{returnMap.startTime}&endTime=$!{returnMap.endTime}"><span>$!relation.name</span> </a> </li>
+								#end
+							#end
+							</ul>
+							<a onclick="showMore($(this))" class="opShowmorebtn" href="javascript:;" id="catagoryA">更多</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				#end
+			</div>
+			<div class="mBox">
+				<form action="list.ms?breedId=$!{returnMap.breedId}&relationType=$!{returnMap.relationType}&relationId=$!{returnMap.relationId}&breed=$!{returnMap.breed1s}&material=$!{returnMap.materials}&spec=$!{returnMap.specs}" name="queryForm" id="queryForm" method="post">
+				<div class="searBar">
+					<div class="dataDcBtn" style="cursor:pointer;" onclick="exportData();">导出数据</div>
+					<b class="f14">历史数据查询</b> <input name="startTime" id="startTime" type="text" value="$!{returnMap.startTime}" size="15" maxlength="15" readonly onClick="showcalendar(event, this);" onFocus="showcalendar(event, this);if(this.value=='0000-00-00')this.value=''" /> 到 <input name="endTime" id="endTime" type="text" value="$!{returnMap.endTime}" size="15" maxlength="15" readonly onClick="showcalendar(event, this);" onFocus="showcalendar(event, this);if(this.value=='0000-00-00')this.value=''" /> <input type="submit" class="buttonBg" value="搜索" />
+				</div>
+				</form>
+				<table width="736" cellspacing="0" cellpadding="0" class="dataTab">
+					<tbody>
+						<tr height="29" class="greybg">
+            				<td width="10%" align="center" bgcolor="#F4F4F4"><strong>品名</strong></td>
+                            <td width="10%" align="center" bgcolor="#F4F4F4"><strong>牌号</strong></td>
+                            <td width="12%" align="center" bgcolor="#F4F4F4"><strong>规格</strong></td>
+							<td width="10%" align="center" bgcolor="#F4F4F4"><strong>地区</strong></td>
+                            <td width="10%" align="center" bgcolor="#F4F4F4"><strong>最低价</strong></td>
+                            <td width="10%" align="center" bgcolor="#F4F4F4"><strong>最高价</strong></td>
+                            <td width="10%" align="center" bgcolor="#F4F4F4"><strong>中间价</strong></td>
+            				<td width="8%" align="center" bgcolor="#F4F4F4"><strong>单位</strong></td>
+                            <td align="center" bgcolor="#F4F4F4"><strong>涨跌</strong></td>
+                            <td width="10%" align="center" bgcolor="#F4F4F4"><strong>日期</strong></td>
+						</tr>
+						#foreach($!datas in $!returnMap.returnPage.datas)
+						<tr onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#FFFBDD'" style="background-color: rgb(255, 255, 255);">
+        					<td align="center">$!datas.breed</td>
+                            <td align="center">$!datas.material</td>
+                            <td align="center">$!datas.spec</td>
+							<td align="center">$!areaTool.display($!datas.relationType, $!datas.relationId)</td>
+                            <td align="center">$!datas.lowPrice</td>
+                            <td align="center">$!datas.highPrice</td>
+                            <td align="center">$!datas.avgPrice</td>
+        					<td align="center">$!datas.unit</td>
+                            <td align="center">
+								#if($!datas.raise.startsWith("+"))
+									<font class="red">$!datas.raise</font>
+								#elseif($!datas.raise.startsWith("-"))
+									<font class="cGreen">$!datas.raise</font>
+								#else
+									$!datas.raise
+								#end
+							</td>
+							<td align="center">$!datas.formatMarketTime("yyyy-MM-dd")</td>
+						</tr>
+						#end
+						<tr onmouseout="this.style.backgroundColor='#FFFFFF'" onmouseover="this.style.backgroundColor='#FFFBDD'">
+        					<td align="center"><strong class="red">均价</strong></td>
+                            <td align="center">&nbsp;</td>
+                            <td align="center">&nbsp;</td>
+							<td align="center">&nbsp;</td>
+                            <td align="center"><strong class="red">$!returnMap.lowPrice</strong></td>
+                            <td align="center"><strong class="red">$!returnMap.highPrice</strong></td>
+                            <td align="center"><strong class="red">$!returnMap.avgPrice</strong></td>
+                            <td colspan="3" align="right"><strong class="red">$!returnMap.avgStartTime ~ $!returnMap.avgEndTime</strong></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class ="page" style="text-align:center;">
+						$!{returnMap.returnPage.pageContents}
+                </div>
+				<!-- <div class="mZstBtn"><a href="#">增加走势图</a></div> -->
+			</div>
+		</div>
+    </div>
+    <footer class="footer">
+        <link href="//a.mysteelcdn.com/common/3.0/index_foot.css?v=02" rel="stylesheet" type="text/css" />
+        <div style="text-align:center;">
+            <div id="pub_bottom">
+                <a href="//about.mysteel.com/" target="_blank">关于钢联</a>&ensp;|&ensp;
+                <a href="//data.mysteel.com/" target="_blank">数据服务</a>&ensp;|&ensp;
+                <a href="//about.mysteel.com/contactus/index.html" target="_blank">联系我们</a>&ensp;|&ensp;
+                <a href="//passport.mysteel.com/join.jsp?site=www.mysteel.com" target="_blank">会员注册</a>&ensp;|&ensp;
+                <a href="//web.mysteel.com.cn/" target="_blank">技术支持</a>&ensp;|&ensp;
+                <a href="//ir.mysteel.com.cn/index.html" target="_blank">投资者关系</a>&ensp;|&ensp;
+                <a href="//news.mysteel.com/links.html" target="_blank">合作伙伴</a>&ensp;|&ensp;
+                <a href="//www.mysteel.com/fwbj.html" target="_blank">服务报价</a><br/> 旗下网站：
+                <a href="//www.mysteel.com" target="_blank">我的钢铁</a>&ensp;|&ensp;
+                <a href="//www.mymetal.net/" target="_blank">我的有色</a>&ensp;|&ensp;
+                <a href="//www.mybxg.com/" target="_blank">我的不锈钢</a>&ensp;|&ensp;
+                <a href="//www.myagric.com/" target="_blank">我的农产品</a>&ensp;|&ensp;
+                <a href="//www.100njz.com/" target="_blank">百年建筑</a>&ensp;|&ensp;
+                <a href="//www.mysteel.net/" target="_blank">English</a>&ensp;|&ensp;
+                <a href="//mri.mysteel.com/" target="_blank">研究咨询</a>&ensp;|&ensp;
+                <a href="//www.sososteel.com/" target="_blank">搜搜钢</a>&ensp;|&ensp;
+                <a href="//www.banksteel.com" target="_blank">钢银现货交易</a>&ensp;|&ensp;
+                <a href="//www.56steel.com/" target="_blank">运钢网</a><br/> &copy; 2000-2019 Mysteel.com, All Rights Reserved.<br/> 上海钢联电子商务股份有限公司&ensp;版权所有&ensp;上海大宗商品信息中心&ensp;增值电信业务经营许可证沪B2-20090056 &nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank" title="沪ICP备15006920号-19">沪ICP备15006920号-19</a>
+                <a class="safeReference_pubfoot" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011302003093" target="_blank">
+                    <i class="fleft_pubfoot" title="沪公网安备"></i>
+                    <p class="fleft_pubfoot">沪公网安备 31011302003093号</p>
+                </a>
+                <div id="pub_footImgCon">
+                    <a href="http://www.itrust.org.cn/Home/Index/itrust_certifi?wm=2631755768" target="_blank">
+                        <i class="logo1" title="中国互联网协会"></i>
+                    </a>
+                    <a href="http://www.zx110.org/" target="_blank">
+                        <i class="logo2" title="网络社会征信网"></i>
+                    </a>
+                    <i class="logo3" title="网站警务室 警民直通车"> </i>
+                    <a href="http://www.sgs.gov.cn/lz/licenseLink.do?method=licenceView&#38entyId=20111012144737710" target="_blank">
+                        <i class="logo4" title="安全联盟 实名验证"></i>
+                    </a>
+                    <a key="549131f8efbfb06e545f4100" logo_size="124x47" logo_type="realname" href="https://v.pinpaibao.com.cn/cert/site/?site=www.mysteel.com&#38at=realname" target="_blank">
+                        <b id="aqLogoMGVLE" class="hide_pubfoot"></b>
+                        <i class="logo5" title="安全联盟认证" ></i>
+                    </a>
+                    <a class="safeReferenceBig_pubfoot" href="http://www.zx110.org/picp/?sn=310104031210">
+                        <span>310104031210</span>
+                    </a>
+                    <a href="https://credit.cecdc.com/CX20150606010250010376.html" target="_blank">
+                        <i class="logo6" title="诚信网站"></i>
+                    </a>
+                    <a href="//news.mysteel.com/06/0607/00/171134B849538A0B.html" target="_blank">
+                        <i class="logo7" title="上海名牌"></i>
+                    </a>
+                    <span class="credibleCon_pubfoot">
+                        <a href="https://ss.knet.cn/verifyseal.dll?sn=e16052731011363679ojdc000000&#38ct=df&#38a=1&#38pa=0.9723383202968492" id="kx_verify" tabindex ="-1" target="_blank" kx_type="图标式">
+                            <i class="logo8" oncontextmenu="return false;" title="可信网站"></i>
+                        </a>
+                        <a href="https://v.pinpaibao.com.cn/cert/site/?site=www.mysteel.com&#38at=realname" tabindex="-1" target="_blank" kx_type="图标式">
+                            <i class="logo9" oncontextmenu="return false;" title="行业验证"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- 意见反馈 -->
+        <link rel="stylesheet" href="//a.mysteelcdn.com/common/3.0/css/feedback_pub.css?v=20180322">
+        <div class="ideafeedBackBtn">
+          <div id="ideaFeedbackFrame" class="ideaFeedbackFrame">
+            <div id="uploader-demo">
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="2">
+                      意见反馈<span class="yjfk_closebtn" style="background: url(//a.mysteelcdn.com/images/frame-close_btn.png) no-repeat center center transparent;margin-right: 10px; display:block;width:40px;height:40px;float:right;"></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="w-20" style="text-align: right;"><span class="mustPoint">*</span>类型:</td>
+                        <td class="w-80">
+                            <div class="fkType">
+                                <label>
+                                    <input type="radio" name="type" id="type1" class="radioInput"  value="1" />
+                                    <span class="radiospan"></span>
+                                    <label for="type1" class="label1">资讯问题</label>
+                                </label>
+                                <label >
+                                    <input type="radio" name="type" id="type2"  class="radioInput" value="2" />
+                                    <span class="radiospan"></span>
+                                    <label for="type2" class="label2">问题报错</label>
+                                </label>
+                                <label >
+                                    <input type="radio" name="type" id="type3"  class="radioInput" value="3"/>
+                                    <span class="radiospan"></span>
+                                    <label for="type3" class="label3">产品建议</label>
+                                </label>
+
+                            </div>
+                        </td>
+                    </tr>
+                  <tr>
+                    <td class="w-20"><span class="mustPoint">*</span>反馈:</td>
+                    <td class="w-80">
+                      <div>
+                        <textarea name="feedContent" id="feedContent" cols="" rows="5" placeholder="请描述您遇到的场景和问题，或提出宝贵意见，感谢您的支持。" class="feedContent" autocomplete="off"></textarea>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>截图:</td>
+                    <td>
+                      <div>
+                        <div class="uploadCon">
+                          <div class="imgCon">
+                            <div id="thelist" class="uploader-list">
+                            </div>
+                            <div id="filePicker">上传</div>
+                          </div>
+                          <div class="tip"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>姓名:</td>
+                    <td>
+                      <div>
+                        <input type="text" placeholder="请输入姓名" class="thrower" id="thrower" autocomplete="off">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="mustPoint">*</span>电话:</td>
+                    <td>
+                      <div>
+                        <input type="text" class="throwerPhone" placeholder="请输入联系电话" id="throwerPhone" autocomplete="off">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="mustPoint">*</span>验证码:</td>
+                    <td>
+                      <div>
+                        <input type="text" placeholder="请输入验证码" class="verifyInp" id="verifyInp" autocomplete="off">
+                        <span class="verifyImg code" id="checkCode">
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="btnCon">
+                <button id="ctlBtn" class="btn btn-default">提&ensp;交</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ideaFeedbackFrameBack"></div>
+        <!-- 错误提示弹框 -->
+        <div class="feedbackFrame">
+          <div class="fd_alertText">
+            <h4>
+              <img src="//a.mysteelcdn.com/images/frame-close_btn.png" alt="" class="closeFrameBtn">
+            </h4>
+            <div class="tipCon">
+              <img src="//a.mysteelcdn.com/images/frame-alert_icon.png" alt="">
+              <span>你上传的格式错误！</span>
+            </div>
+            <div class="sureFrameBtn">确认</div>
+          </div>
+        </div>
+        <!-- 提交成功弹框 -->
+        <div class="ideaFeedbackAlertFrame">
+          <span>提交成功</span>
+        </div>
+        <script type="text/javascript">
+            (function() {
+                var _getScript = function(url,callback,charset) {
+                    var head = document.getElementsByTagName('head')[0],
+                        js = document.createElement('script');
+                        js.setAttribute('type', 'text/javascript');
+                        js.setAttribute('charset',charset||"utf-8");
+                        js.setAttribute('src', url);
+                        head.appendChild(js);
+                    //执行回调
+                    var callbackFn = function(){
+                        if(typeof callback === 'function'){callback();}
+                    };
+                    if (document.all) {
+                        js.onreadystatechange = function() {
+                            if (js.readyState == 'loaded' || js.readyState == 'complete') {callbackFn();}
+                        }
+                    } else {
+                        js.onload = function() {
+                            callbackFn();
+                        }
+                    }
+                }
+                if(typeof jQuery === 'undefined'){
+                    _getScript("//a.mysteelcdn.com/libs/jquery.min.js",function(){
+                        jQuery.noConflict();
+                        jQuery(document).ready(function(){
+                            _getScript("//a.mysteelcdn.com/libs/webuploader.js?v=201705231730",function(){
+                                _getScript("//a.mysteelcdn.com/common/3.0/js/ideafeedback2.js?v=201906101855",{},"gb2312")
+                            })
+                        });
+                        jQuery(function(){
+                            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+                            var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+                            var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+                            if(isIE){
+                                var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                                reIE.test(userAgent);
+                                var fIEVersion = parseFloat(RegExp["$1"]);
+                                if(fIEVersion <= 8) {
+                                   jQuery(".fkType>label>input").show();
+                                   jQuery(".radiospan").hide();
+                                }
+                            }
+                        })
+                    })
+                }else{
+                    jQuery(document).ready(function(){
+                        _getScript("//a.mysteelcdn.com/libs/webuploader.js?v=201705231730",function(){
+                            _getScript("//a.mysteelcdn.com/common/3.0/js/ideafeedback2.js?v=201906101855",{},"gb2312")
+                        })
+                    })
+                    jQuery(function(){
+                        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+                        var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+                        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+                        if(isIE){
+                            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                            reIE.test(userAgent);
+                            var fIEVersion = parseFloat(RegExp["$1"]);
+                            if(fIEVersion <= 8) {
+                               jQuery(".fkType>label>input").show();
+                               jQuery(".radiospan").hide();
+                            }
+                        }
+                    })
+                }
+                var footdatalink = document.getElementById("footdatalink");
+                if(footdatalink){
+                    footdatalink.setAttribute("href",footdatalink.getAttribute("href")+"?fr="+location.href);
+                }
+            })();
+        </script>
+        <!-- 统计 -->
+        <script type="text/javascript" src="//stats.mysteel.com/stats"></script>
+        <script type="text/javascript" src="//a.mysteelcdn.com/mysteel_public/js/statistics.js?v=20180205"></script>
+    </footer>
+    <ul id="fixed-box">
+        <!-- 右侧固定菜单 -->
+        <li class="li2">
+            <div class="position wechat" style="display: none;">
+                <h3>我的钢铁手机版</h3>
+                <p>扫描二维码下载</p>
+                <p>查价格 找商机 更高效</p>
+                <div class="arrow"><i></i></div>
+            </div>
+        </li>
+        <li class="goTop" style="display: list-item;"></li>
+    </ul>
+    <script>
+        jq183(function($){
+            // 页面右侧固定菜单
+            $(function () {
+                $("#fixed-box li").hover(function () {
+                    $(this).children().show();
+                },
+                function () {
+                    $(this).children().hide();
+                });
+
+                // 返回顶部
+                function goTop() {
+                    $(window).scroll(function () {
+                        var scrollH = $(window).scrollTop();
+                        scrollH >= 500 ? $('.goTop').show() : $('.goTop').hide();
+                    });
+                    $('.goTop').click(function () {
+                        $("html,body").animate({
+                            scrollTop: 0
+                        },
+                        500);
+                    });
+                }
+                goTop();
+            })
+        });
+    </script>
+</body>
+
+</html>
